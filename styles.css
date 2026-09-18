@@ -351,6 +351,160 @@ h1, h2, h3, h4, h5, h6 {
     opacity: 0.9;
 }
 
+/* 👇 АДАПТАЦИЯ ПОД РАЗНЫЕ ОРИЕНТАЦИИ */
+
+/* Десктоп: горизонтальная ориентация */
+@media (min-width: 1025px) and (orientation: landscape) {
+    .hero {
+        min-height: 90vh;
+    }
+}
+
+/* Планшет: горизонтальная ориентация (iPad landscape) */
+@media (max-width: 1024px) and (min-width: 768px) and (orientation: landscape) {
+    .hero {
+        min-height: 80vh; /* 👈 Ваша оптимальная высота */
+    }
+
+    .hero-container {
+        padding: 1.5rem 20px;
+        gap: 2rem;
+    }
+
+    .hero-title {
+        font-size: 3rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.5rem;
+    }
+
+    .hero-description {
+        font-size: 1rem;
+    }
+
+    .ipad-icon {
+        width: 250px;
+    }
+}
+
+/* Планшет: вертикальная ориентация (iPad portrait) */
+@media (max-width: 1024px) and (min-width: 768px) and (orientation: portrait) {
+    .hero {
+        min-height: 60vh; /* 👈 Меньше для вертикальной */
+        padding: 1.5rem 0;
+    }
+
+    .hero-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 1.5rem;
+        padding: 1rem 20px;
+    }
+
+    .hero-content {
+        order: 1;
+    }
+
+    .hero-visual {
+        order: 2;
+    }
+
+    .hero-title {
+        font-size: 2.8rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.4rem;
+    }
+
+    .hero-description {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .ipad-icon {
+        width: 280px;
+        margin: 0 auto;
+    }
+}
+
+/* Смартфон: любая ориентация */
+@media (max-width: 767px) {
+    .hero {
+        min-height: 85vh; /* 👈 Оптимально для телефонов */
+        padding: 1.5rem 0;
+    }
+
+    .hero-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 1.5rem;
+        padding: 1rem 15px;
+    }
+
+    .hero-content {
+        order: 1;
+    }
+
+    .hero-visual {
+        order: 2;
+    }
+
+    .hero-title {
+        font-size: 2.2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+
+    .hero-description {
+        font-size: 0.95rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .btn {
+        width: 100%;
+        max-width: 280px;
+    }
+
+    .ipad-icon {
+        width: 220px;
+        margin: 0 auto;
+    }
+}
+
+/* Маленький смартфон */
+@media (max-width: 480px) {
+    .hero {
+        min-height: 90vh;
+    }
+
+    .hero-title {
+        font-size: 1.8rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .ipad-icon {
+        width: 180px;
+    }
+}
+
 /* ============================================
    6. DEVICE PREVIEW SECTION (два iPad)
 ============================================ */
