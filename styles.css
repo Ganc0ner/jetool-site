@@ -1443,6 +1443,7 @@ background: #13293D;
      .hero-content {
         order: 1;
         max-width: 100%; /* 👈 Занимает всю доступную ширину */
+        padding-left: 0; /* 👈 Убираем сдвиг на мобильных */
     }
 
     .hero-visual {
