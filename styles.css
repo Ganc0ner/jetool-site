@@ -1215,9 +1215,6 @@ background: #13293D;
 /* ============================================
    18. RESPONSIVE DESIGN
 ============================================ */
-/* ============================================
-   18. RESPONSIVE DESIGN
-============================================ */
 
 /* Промежуточные масштабы (1024px - 1200px) */
 @media (max-width: 1200px) {
@@ -1326,6 +1323,10 @@ background: #13293D;
         min-height: 65px;
     }
 
+     .nav-container {
+        flex-wrap: wrap; /* 👈 Добавили */
+    }
+
     .nav-logo h2 {
         font-size: 1.4rem;
     }
@@ -1352,22 +1353,31 @@ background: #13293D;
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         border-top: 1px solid rgba(85, 142, 207, 0.2);
         z-index: 999;
+        max-height: 0; /* 👈 Анимация */
+        overflow: hidden;
+        transition: max-height 0.3s ease;
     }
 
     .nav-menu.active {
-        display: flex;
+        display: flex !important; /* 👈 Показываем */
+        max-height: 500px; /* 👈 Анимация */
     }
 
     .nav-link {
         padding: 0.75rem 1rem;
         border-radius: 8px;
         font-size: 1rem;
+        width: 100%; /* 👈 На всю ширину */
     }
 
     .nav-link:hover {
         background: rgba(85, 142, 207, 0.1);
     }
 
+     .nav-link::after {
+        display: none; /* 👈 Убираем подчеркивание */
+    }
+    
     /* Hero */
     .hero-container {
         grid-template-columns: 1fr;
