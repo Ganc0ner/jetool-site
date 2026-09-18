@@ -140,7 +140,8 @@ h1, h2, h3, h4, h5, h6 {
     position: fixed;
     top: 0;
     width: 100%;
-    height: 80px;
+    height: auto;
+     min-height: 80px; /* 👈 Добавили минимальную высоту */
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
     z-index: 1000;
@@ -160,6 +161,8 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
+    min-height: 50px; /* 👈 Добавили */
 }
 
 .nav-logo {
@@ -186,6 +189,8 @@ h1, h2, h3, h4, h5, h6 {
 .nav-menu {
     display: flex;
     gap: 2rem;
+    align-items: center; /* 👈 Добавили */
+    
 }
 
 .nav-link {
@@ -194,6 +199,10 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 500;
     transition: color 0.3s ease;
     position: relative;
+    text-align: center; /* 👈 Центрирование */
+    display: inline-block; /* 👈 Чтобы text-align работал */
+    line-height: 1.3; /* 👈 Межстрочный интервал */
+    padding: 0.25rem 0; /* 👈 Небольшой отступ */
 }
 
 .nav-link:hover {
@@ -246,7 +255,7 @@ h1, h2, h3, h4, h5, h6 {
    5. HERO SECTION (главный экран с кокпитом)
 ============================================ */
 .hero {
-    min-height: 110vh;
+    min-height: 80vh;
     background: 
         radial-gradient(ellipse at center, 
             rgba(5, 21, 45, 0.7) 40%, 
