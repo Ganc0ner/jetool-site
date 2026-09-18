@@ -1408,17 +1408,23 @@ background: #13293D;
         min-height: auto; /* 👈 Авто высота */
         height: auto;
         padding: 2.5rem 0; /* 👈 Фиксированные отступы */
+        display: flex; /* 👈 Добавили */
+        justify-content: center; /* 👈 Центрирование */
+        align-items: center; /* 👈 Вертикальное центрирование */
     }
 
     .hero-container {
         grid-template-columns: 1fr; /* 👈 ОДНА КОЛОНКА */
         text-align: center;
         gap: 1.5rem;
-        padding: 1rem 20px; 
+        padding: 1rem 20px;
+        max-width: 600px; /* 👈 Ограничили ширину */
+        margin: 0 auto; /* 👈 Центрирование контейнера */
     }
 
      .hero-content {
         order: 1;
+        max-width: 100%; /* 👈 Занимает всю доступную ширину */
     }
 
     .hero-visual {
@@ -1439,6 +1445,7 @@ background: #13293D;
     .hero-description {
         font-size: 1rem;
         margin-bottom: 1.5rem;
+        max-width: 100%; /* 👈 Текст занимает всю ширину */
     }
 
     .hero-buttons {
