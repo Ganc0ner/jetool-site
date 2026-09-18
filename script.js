@@ -52,6 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+
     // Intersection Observer for animations
     const observerOptions = {
         threshold: 0.1,
@@ -142,6 +143,22 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    // Floating animation for iPad icon
+const ipadIcon = document.querySelector('.ipad-icon');
+if (ipadIcon) {
+    let floatDirection = 1;
+    setInterval(() => {
+        const currentTransform = ipadIcon.style.transform || 'translateY(0px)';
+        const currentY = parseFloat(currentTransform.match(/translateY\(([^)]+)\)/)?.[1] || 0);
+        
+        if (currentY >= 5) floatDirection = -1;
+        if (currentY <= -5) floatDirection = 1;
+        
+        const newY = currentY + (floatDirection * 0.05);
+        ipadIcon.style.transform = `translateY(${newY}px)`;
+    }, 60);
+}
+/*
     // Floating animation for airplane icon
     const airplaneIcon = document.querySelector('.airplane-icon');
     if (airplaneIcon) {
@@ -157,7 +174,7 @@ document.addEventListener('DOMContentLoaded', function() {
             airplaneIcon.style.transform = `translateY(${newY}px)`;
         }, 50);
     }
-
+*/
     // Add loading animation
     window.addEventListener('load', function() {
         document.body.classList.add('loaded');
@@ -237,7 +254,7 @@ if (heroTitle) {
         left: 0;
         width: 0%;
         height: 3px;
-        background: linear-gradient(90deg, #1E4E6A, #4A9B8E);
+        background: linear-gradient(90deg, rgb(28, 38, 44), #558ecf);
         z-index: 9999;
         transition: width 0.1s ease;
     `;
@@ -304,7 +321,38 @@ style.textContent = `
         .nav-menu {
             display: none;
         }
-    }
+    });
+});
 `;
 document.head.appendChild(style);
 
+// Мобильное меню
+document.addEventListener('DOMContentLoaded', function() {
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    if (hamburger && navMenu) {
+        // Открытие/закрытие меню
+        hamburger.addEventListener('click', function() {
+            navMenu.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+
+        // Закрытие меню при клике на ссылку
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                navMenu.classList.remove('active');
+                hamburger.classList.remove('active');
+            });
+        });
+
+        // Закрытие меню при клике вне его
+        document.addEventListener('click', function(event) {
+            if (!hamburger.contains(event.target) && !navMenu.contains(event.target)) {
+                navMenu.classList.remove('active');
+                hamburger.classList.remove('active');
+            }
+        });
+    }
+})

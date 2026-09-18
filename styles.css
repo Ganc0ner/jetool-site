@@ -1,4 +1,28 @@
-/* Reset and Base Styles */
+/* ============================================
+   ОГЛАВЛЕНИЕ:
+   1. RESET & BASE STYLES
+   2. TYPOGRAPHY
+   3. BUTTONS
+   4. NAVIGATION (fixed navbar)
+   5. HERO SECTION
+   6. DEVICE PREVIEW SECTION
+   7. PROBLEMS SECTION
+   8. SOLUTION SECTION
+   9. AIRCRAFT SECTION
+   10. BENEFITS SECTION
+   11. TIME COMPARISON SECTION
+   12. HOW IT WORKS SECTION
+   13. CTA SECTION
+   14. CONTACT SECTION
+   15. FOOTER
+   16. ANIMATIONS
+   17. CUSTOM SCROLLBAR
+   18. RESPONSIVE DESIGN
+============================================ */
+
+/* ============================================
+   1. RESET & BASE STYLES
+============================================ */
 * {
     margin: 0;
     padding: 0;
@@ -12,9 +36,10 @@ html {
 body {
     font-family: 'Open Sans', sans-serif;
     line-height: 1.6;
-    color: #333;
+    color: #000000;
     overflow-x: hidden;
     background-color: #f5f5f5;
+    padding-top: 70px; /* Компенсация фиксированного навбара */
 }
 
 .container {
@@ -23,20 +48,32 @@ body {
     padding: 0 20px;
 }
 
-/* Typography */
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
-    line-height: 1.2;
+img {
+    display: block;
+    width: 100%;
+    height: auto;
 }
 
-/* заголовки секций */
+/* Стабилизация прорисовки */
+body * {
+    transition: none !important;
+    animation: none !important;
+}
+
+/* ============================================
+   2. TYPOGRAPHY
+============================================ */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 550;
+    line-height: 1.2;
+}
 
 .section-title {
     font-size: 2.5rem;
     text-align: center;
-    margin-bottom: 3rem;
-    color: #1E4E6A;
+    margin-bottom: 2.5rem;
+    color: #a1aab5;
     position: relative;
 }
 
@@ -46,18 +83,20 @@ h1, h2, h3, h4, h5, h6 {
     bottom: -10px;
     left: 50%;
     transform: translateX(-50%);
-    width: 80px;
+    width: 150px;
     height: 3px;
-    background: #4A9B8E;
+    background: #e4e6f2;
     border-radius: 2px;
 }
 
-/* Buttons */
+/* ============================================
+   3. BUTTONS
+============================================ */
 .btn {
     display: inline-block;
     padding: 12px 30px;
     text-decoration: none;
-    border-radius: 10px;
+    border-radius: 5px;
     font-weight: 600;
     text-align: center;
     transition: all 0.3s ease;
@@ -67,7 +106,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, #1E4E6A, #4A9B8E);
+    background: linear-gradient(180deg,  #558ecf, #558ecf);
     color: white;
     box-shadow: 0 4px 15px rgba(30, 78, 106, 0.3);
 }
@@ -94,16 +133,19 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 1.1rem;
 }
 
-/* Navigation */
+/* ============================================
+   4. NAVIGATION (fixed navbar)
+============================================ */
 .navbar {
     position: fixed;
     top: 0;
     width: 100%;
+    height: 80px;
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
     z-index: 1000;
     padding: 1rem 0;
-    transition: all 0.3s ease;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .navbar.scrolled {
@@ -120,12 +162,25 @@ h1, h2, h3, h4, h5, h6 {
     align-items: center;
 }
 
-/* надпись вверху JETool */
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
 
 .nav-logo h2 {
-    color: #1E4E6A;
     font-size: 1.8rem;
-    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: #151616;
+    font-weight: 900;
+    margin: 0;
+}
+
+.logo-icon {
+    height: 3.0em;
+    width: auto;
+    vertical-align: middle;
+    border-radius: 10px;
 }
 
 .nav-menu {
@@ -141,10 +196,8 @@ h1, h2, h3, h4, h5, h6 {
     position: relative;
 }
 
-/* шапка "О продукте" и т.д */
-
 .nav-link:hover {
-    color: #1E4E6A;
+    color: #558ecf;
 }
 
 .nav-link::after {
@@ -154,7 +207,7 @@ h1, h2, h3, h4, h5, h6 {
     left: 0;
     width: 0;
     height: 2px;
-    background: #1E4E6A;
+    background: #558ecf;
     transition: width 0.3s ease;
 }
 
@@ -176,32 +229,42 @@ h1, h2, h3, h4, h5, h6 {
     transition: 0.3s;
 }
 
-/* Hero Section панель приборов */
+/* Анимация гамбургер-меню */
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+}
+
+/* ============================================
+   5. HERO SECTION (главный экран с кокпитом)
+============================================ */
 .hero {
-    min-height: 100vh;
-    background: linear-gradient(135deg, rgba(19,41,61,0.9), rgba(30,78,106,0.85)), 
-              url('cockpit1.jpg');
+    min-height: 110vh;
+    background: 
+        radial-gradient(ellipse at center, 
+            rgba(5, 21, 45, 0.7) 40%, 
+            rgba(12, 18, 31, 0.95) 100%),
+        url('cockpit1.jpg');
     background-size: cover;
     background-position: center;
     display: flex;
     align-items: center;
     position: relative;
     overflow: hidden;
-}
-
-.hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(30, 79, 207, 0.1);
+    padding: 2rem 0; /* 👈 Добавили отступы сверху и снизу */
 }
 
 .hero-container {
     max-width: 1200px;
     margin: 0 auto;
+     padding: 2rem 20px; /* 👈 Увеличили вертикальные отступы */
     padding: 0 20px;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -216,25 +279,28 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .hero-title {
+    font-family: 'Montserrat', sans-serif;
     font-size: 4rem;
     font-weight: 700;
     margin-bottom: 1rem;
-    background: linear-gradient(45deg, #ffffff, #e0e7ff);
+    background: linear-gradient(45deg, #ffffff, #313236);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
 
 .hero-subtitle {
+    font-family: 'Roboto Condensed', sans-serif;
     font-size: 1.8rem;
     margin-bottom: 1.5rem;
-    color: #e0e7ff;
+    color: #558ecf;
 }
 
 .hero-description {
+    font-family: 'Roboto Condensed', sans-serif;
     font-size: 1.2rem;
     margin-bottom: 2.5rem;
-    color: #cbd5e1;
+    color: #fefeff;
     line-height: 1.7;
 }
 
@@ -242,6 +308,7 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
     gap: 1.5rem;
     flex-wrap: wrap;
+    margin-bottom: 1rem; /* 👈 Отступ снизу */
 }
 
 .hero-visual {
@@ -250,21 +317,72 @@ h1, h2, h3, h4, h5, h6 {
     align-items: center;
 }
 
-.airplane-icon {
-    font-size: 10rem;
-    color: rgba(255, 255, 255, 0.5);
-    animation: float 6s ease-in-out infinite;
+/* Иконка iPad в hero-секции */
+.ipad-icon {
+    position: relative;
+    width: 300px;
+    height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-@keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-20px); }
+.ipad-image,
+.hero-ipad {
+    max-width: 100%;
+    border-radius: 20px;
+    height: auto;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    filter: drop-shadow(0 20px 60px rgba(0, 0, 0, 0.3));
 }
 
-/* Problems Section */
+.ipad-icon i {
+    font-size: 20rem;
+    color: #1E4E6A;
+    opacity: 0.9;
+}
+
+/* ============================================
+   6. DEVICE PREVIEW SECTION (два iPad)
+============================================ */
+.device-preview {
+    background: #fff;
+    padding: 3rem 0;
+    text-align: center;
+}
+
+.device-images {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.device-img {
+    max-width: 368px;
+    width: 100%;
+    border-radius: 23px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.device-img:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+}
+
+/* ============================================
+   7. PROBLEMS SECTION (проблемы экипажа)
+============================================ */
 .problems {
-    padding: 5rem 0;
-    background: white;
+    padding: 3rem 0;
+    background: #f5f5f5;
+}
+
+.problems .section-title {
+    color: #64748b;
+    margin-bottom: 2.5rem;
 }
 
 .problems-grid {
@@ -274,48 +392,110 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .problem-card {
-    background: #f5f5f5;
+    background: white;
     padding: 2.5rem 2rem;
     border-radius: 15px;
     text-align: center;
     box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
     transition: all 0.3s ease;
-    border: 1px solid #e2e8f0;
+    border-top: 4px solid #558ecf;
+    position: relative;
+    overflow: hidden;
+}
+
+.problem-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(85, 142, 207, 0.03), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.problem-card:hover::before {
+    opacity: 1;
 }
 
 .problem-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+    transform: translateY(-8px);
+    box-shadow: 0 10px 40px rgba(85, 142, 207, 0.2);
+    border-top-color: #3b6fa8;
 }
 
 .problem-icon {
     width: 80px;
     height: 80px;
-    background: linear-gradient(135deg, #13293D, #1E4E6A);
-    border-radius: 50%;
+    background: linear-gradient(135deg, #558ecf, #3b6fa8);
+    border-radius: 15px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 auto 1.5rem;
     font-size: 2rem;
     color: white;
+    box-shadow: 0 5px 20px rgba(85, 142, 207, 0.3);
+    transition: all 0.3s ease;
+}
+
+.problem-card:hover .problem-icon {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 8px 30px rgba(85, 142, 207, 0.5);
 }
 
 .problem-card h3 {
     font-size: 1.3rem;
     margin-bottom: 1rem;
-    color: #4A9B8E;
+    color: #143458;
+    font-weight: 600;
 }
 
 .problem-card p {
     color: #64748b;
     line-height: 1.6;
+    font-size: 0.95rem;
 }
 
-/* Solution Section */
+/* ============================================
+   8. SOLUTION SECTION (JETool поможет)
+============================================ */
 .solution {
-    padding: 6rem 0;
-    background: #f5f5f5;
+    padding: 3rem 0;
+    background: radial-gradient(ellipse at center, 
+            rgba(5, 21, 45, 0.85) 40%, 
+            rgba(12, 18, 31, 0.95) 100%),
+        url('backGround.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.solution::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.2);
+    z-index: 0;
+}
+
+.solution .container {
+    position: relative;
+    z-index: 1;
+}
+
+.solution .section-title {
+    color: #e0e7ff;
+    margin-bottom: 2.5rem;
+}
+
+.solution .section-title::after {
+    background: #558ecf;
 }
 
 .solution-grid {
@@ -326,49 +506,190 @@ h1, h2, h3, h4, h5, h6 {
 
 .solution-card {
     text-align: center;
-    padding: 3rem 1rem;
-    border-radius: 50px;
-    background: white;
-    border: 3px solid #4A9B8E;
+    padding: 3rem 2rem;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(15px);
+    border: 2px solid rgba(85, 142, 207, 0.3);
     transition: all 0.3s ease;
     position: relative;
+    overflow: hidden;
+}
+
+.solution-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(85, 142, 207, 0.1), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.solution-card:hover::before {
+    opacity: 1;
 }
 
 .solution-card:nth-child(odd) {
-    border-color: #13293D;
+    border-color: rgba(59, 111, 168, 0.4);
 }
 
 .solution-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(90, 79, 207, 0.15);
+    transform: translateY(-8px);
+    box-shadow: 0 10px 40px rgba(85, 142, 207, 0.3);
+    border-color: #558ecf;
+    background: rgba(255, 255, 255, 0.18);
 }
 
 .solution-number {
-    font-size: 3rem;
+    font-size: 3.5rem;
     font-weight: 700;
-    color: #4A9B8E;
+    color: #558ecf;
     margin-bottom: 1rem;
+    text-shadow: 0 0 20px rgba(85, 142, 207, 0.5);
+    transition: all 0.3s ease;
+}
+
+.solution-card:hover .solution-number {
+    transform: scale(1.1);
+    text-shadow: 0 0 30px rgba(85, 142, 207, 0.8);
 }
 
 .solution-card:nth-child(odd) .solution-number {
-    color: #13293D;
+    color: #3b6fa8;
 }
 
 .solution-card h3 {
-    font-size: 1.4rem;
-    color: #4A9B8E;
-    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+    color: #e0e7ff;
+    margin-bottom: 0.8rem;
+    font-weight: 600;
 }
 
 .solution-card p {
-    color: #475569;
-    font-size: 1.1rem;
+    color: #cbd5e1;
+    font-size: 1.05rem;
+    line-height: 1.5;
 }
 
-/* Benefits Section */
-.benefits {
-    padding: 6rem 0;
+/* Пульсация номеров в Solution */
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.solution-card:hover .solution-number {
+    animation: pulse 2s infinite;
+}
+
+/* Плавное появление карточек Problems */
+.problem-card {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.problem-card:nth-child(1) { animation-delay: 0.1s; }
+.problem-card:nth-child(2) { animation-delay: 0.2s; }
+.problem-card:nth-child(3) { animation-delay: 0.3s; }
+.problem-card:nth-child(4) { animation-delay: 0.4s; }
+
+/* ============================================
+   9. AIRCRAFT SECTION (доступные типы ВС)
+============================================ */
+.aircraft {
+    padding: 3rem 0;
+    background: #fff;
+}
+
+.aircraft .section-title {
+    color: #64748b;
+    margin-bottom: 2.5rem;
+}
+
+.aircraft-table {
+    max-width: 850px;
+    margin: 0 auto;
+    border-radius: 15px;
+    overflow: hidden;
     background: white;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(85, 142, 207, 0.2);
+}
+
+.aircraft-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 2.5rem;
+    border-bottom: 1px solid rgba(85, 142, 207, 0.15);
+    font-size: 1.05rem;
+    transition: all 0.3s ease;
+}
+
+.aircraft-row:last-child {
+    border-bottom: none;
+}
+
+.aircraft-row:not(.header):hover {
+    background: rgba(85, 142, 207, 0.05);
+    border-left: 4px solid #558ecf;
+    padding-left: calc(2.5rem - 4px);
+}
+
+.aircraft-row.header {
+    background: linear-gradient(135deg, #558ecf, #3b6fa8);
+    color: white;
+    font-weight: 700;
+    font-size: 1.15rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 1.5rem 2.5rem;
+}
+
+.aircraft-cell.left {
+    flex: 1;
+    text-align: left;
+    color: #143458;
+    font-weight: 500;
+}
+
+.aircraft-row.header .aircraft-cell.left,
+.aircraft-row.header .aircraft-cell.right {
+    color: white;
+}
+
+.aircraft-cell.right {
+    flex: 1;
+    text-align: right;
+    color: #64748b;
+    font-weight: 500;
+}
+
+/* Иконки для типов самолетов (опционально) */
+.aircraft-cell.left::before {
+    content: '✈️';
+    margin-right: 0.5rem;
+    opacity: 0.6;
+}
+
+.aircraft-row.header .aircraft-cell.left::before,
+.aircraft-row.header .aircraft-cell.right::before {
+    content: '';
+    margin-right: 0;
+}
+
+/* ============================================
+   10. BENEFITS SECTION (преимущества JETool)
+============================================ */
+.benefits {
+    padding: 3rem 0;
+    background: #fff;
+}
+
+.benefits .section-title {
+    color: #64748b;
+    margin-bottom: 2.5rem;
 }
 
 .benefits-container {
@@ -379,9 +700,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .benefits-subtitle {
     font-size: 1.8rem;
-    color: #4A9B8E;
+    color: #558ecf;
     margin-bottom: 2rem;
     text-align: center;
+    font-weight: 600;
 }
 
 .benefit-item {
@@ -389,77 +711,112 @@ h1, h2, h3, h4, h5, h6 {
     gap: 1.5rem;
     margin-bottom: 2rem;
     padding: 1.5rem;
-    background: #f5f5f5;
+    background: rgba(85, 142, 207, 0.05);
     border-radius: 10px;
+    border-left: 4px solid #558ecf;
     box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05);
     transition: all 0.3s ease;
 }
 
 .benefit-item:hover {
-    transform: translateX(5px);
-    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+    transform: translateX(8px);
+    box-shadow: 0 5px 25px rgba(85, 142, 207, 0.15);
+    background: rgba(85, 142, 207, 0.08);
 }
 
 .benefit-item i {
-    font-size: 1.5rem;
-    color: #4A9B8E;
+    font-size: 1.8rem;
+    color: #558ecf;
     margin-top: 0.2rem;
-    min-width: 24px;
+    min-width: 28px;
 }
 
 .benefit-item h4 {
-    font-size: 1.1rem;
-    color: #1E4E6A;
+    font-size: 1.15rem;
+    color: #143458;
     margin-bottom: 0.5rem;
+    font-weight: 600;
 }
 
 .benefit-item p {
     color: #64748b;
     font-size: 0.95rem;
-    line-height: 1.5;
+    line-height: 1.6;
 }
 
-/* Time Comparison Section */
+/* ============================================
+   11. TIME COMPARISON SECTION (экономия времени)
+============================================ */
 .time-comparison {
-    padding: 6rem 0;
-    background: linear-gradient(135deg, #13293D, #1E4E6A);
-    color: white;
+    padding: 3rem 0;
+    background: radial-gradient(ellipse at center, 
+            rgba(5, 21, 45, 0.85) 40%, 
+            rgba(12, 18, 31, 0.95) 100%),
+        url('backGround.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.time-comparison .section-title {
+    color: #e0e7ff;
+    margin-bottom: 2.5rem;
+}
+
+.time-comparison .section-title::after {
+    background: #558ecf;
 }
 
 .comparison-container {
-  display: grid;
-  grid-template-columns: 1fr 100px 1fr;
-  gap: 3rem;
-  align-items: stretch; /* 🟢 это растягивает ячейки по высоте */
+    display: grid;
+    grid-template-columns: 1fr 100px 1fr;
+    gap: 3rem;
+    align-items: center;
 }
 
 .comparison-item {
-  height: 100%; /* 🟢 блок занимает всю высоту своей ячейки */
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between; /* 🟢 по желанию */
-  text-align: center;
-  padding: 2rem;
-  border-radius: 15px;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    padding: 2.5rem 2rem;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    min-height: 400px; /* 👈 Минимальная высота для выравнивания */
+}
+
+.comparison-item.without-jetool {
+    border-top: 3px solid #ef4444;
+}
+
+.comparison-item.with-jetool {
+    border-top: 3px solid #558ecf;
 }
 
 .comparison-item h3 {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     margin-bottom: 1.5rem;
     color: #e0e7ff;
+    font-weight: 600;
 }
 
 .time-display {
-    font-size: 3rem;
+    font-size: 3.5rem;
     font-weight: 700;
     margin-bottom: 1.5rem;
+    color: #f0f4ff;
 }
 
 .time-display.highlight {
-    color: white;
-    text-shadow: none;
+    color: #558ecf;
+    text-shadow: 0 0 20px rgba(85, 142, 207, 0.5);
 }
 
 .time-breakdown {
@@ -469,28 +826,51 @@ h1, h2, h3, h4, h5, h6 {
 .time-item {
     display: flex;
     justify-content: space-between;
-    padding: 0.5rem 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    font-size: 0.9rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    font-size: 0.95rem;
+    color: #cbd5e1;
+}
+
+.time-item:last-child {
+    border-bottom: none;
+}
+
+/* 👇 ТЕКСТ ПОД "30 СЕКУНД" - светлый */
+.comparison-item.with-jetool p {
+    color: #e0e7ff; /* 👈 Светлый цвет */
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin-top: 1rem;
 }
 
 .vs-divider {
-    font-size: 2rem;
+    font-size: 2.2rem;
     font-weight: 700;
-    color: #fbbf24;
-    background: rgba(251, 191, 36, 0.2);
-    width: 80px;
-    height: 80px;
+    color: #558ecf;
+    background: rgba(85, 142, 207, 0.2);
+    border: 2px solid #558ecf;
+    width: 90px;
+    height: 90px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 0 30px rgba(85, 142, 207, 0.4);
+    align-self: center; /* 👈 Центрирование */
 }
 
-/* How It Works Section */
+/* ============================================
+   12. HOW IT WORKS SECTION (как это работает)
+============================================ */
 .how-it-works {
-    padding: 6rem 0;
-    background: white;
+    padding: 3rem 0;
+    background: #fff;
+}
+
+.how-it-works .section-title {
+    color: #64748b;
+    margin-bottom: 2.5rem;
 }
 
 .steps-container {
@@ -503,49 +883,83 @@ h1, h2, h3, h4, h5, h6 {
 .step {
     text-align: center;
     padding: 2rem 1rem;
+    background: rgba(85, 142, 207, 0.03);
+    border-radius: 15px;
+    transition: all 0.3s ease;
+}
+
+.step:hover {
+    background: rgba(85, 142, 207, 0.08);
+    transform: translateY(-5px);
 }
 
 .step-icon {
     width: 100px;
     height: 100px;
-    background: linear-gradient(135deg, #13293D, #1E4E6A);
-    border-radius: 50%;
+    background: linear-gradient(135deg, #558ecf, #3b6fa8);
+    border-radius: 15px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 auto 1.5rem;
     font-size: 2.5rem;
     color: white;
-    box-shadow: 0 5px 25px rgba(90, 79, 207, 0.3);
+    box-shadow: 0 5px 25px rgba(85, 142, 207, 0.3);
+    transition: all 0.3s ease;
+}
+
+.step:hover .step-icon {
+    transform: scale(1.1);
+    box-shadow: 0 8px 35px rgba(85, 142, 207, 0.5);
 }
 
 .step h3 {
     font-size: 1.3rem;
-    color: #4A9B8E;
+    color: #143458;
     margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.step p {
+    color: #64748b;
+    font-size: 0.95rem;
+    line-height: 1.5;
 }
 
 .step-arrow {
     font-size: 2rem;
-    color: #4A9B8E;
+    color: #558ecf;
 }
 
-.step-arrow {
-    font-size: 2rem;
-    color: #13293D;
-}
-
-/* CTA Section */
+/* ============================================
+   13. CTA SECTION (призыв к действию)
+============================================ */
 .cta {
-    padding: 6rem 0;
-    background: linear-gradient(135deg, #13293D, #1E4E6A);
-    color: white;
+    padding: 4rem 0;
+    background: radial-gradient(ellipse at center, 
+            rgba(5, 21, 45, 0.7) 40%, 
+            rgba(12, 18, 31, 0.95) 100%),
+        url('bottomImage1.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
     text-align: center;
+    color: white;
+}
+
+.cta-content {
+    position: relative;
+    z-index: 1;
 }
 
 .cta-content h2 {
     font-size: 3rem;
     margin-bottom: 3rem;
+    color: #e0e7ff;
+    font-weight: 700;
 }
 
 .cta-features {
@@ -553,27 +967,50 @@ h1, h2, h3, h4, h5, h6 {
     grid-template-columns: 1fr 1fr;
     gap: 3rem;
     margin-bottom: 3rem;
-    max-width: 600px;
+    max-width: 700px;
     margin-left: auto;
     margin-right: auto;
+}
+
+.cta-feature {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 2rem;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.cta-feature:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-5px);
 }
 
 .cta-feature h3 {
     font-size: 4rem;
     font-weight: 700;
-    color: #fbbf24;
+    color: #558ecf;
     margin-bottom: 1rem;
+    text-shadow: 0 0 20px rgba(85, 142, 207, 0.5);
 }
 
 .cta-feature p {
     font-size: 1.2rem;
     color: #e0e7ff;
+    line-height: 1.5;
 }
 
-/* Contact Section */
+/* ============================================
+   14. CONTACT SECTION (контакты)
+============================================ */
 .contact {
-    padding: 6rem 0;
+    padding: 3rem 0;
     background: #f5f5f5;
+}
+
+.contact .section-title {
+    color: #64748b;
+    margin-bottom: 2.5rem;
 }
 
 .contact-container {
@@ -583,27 +1020,46 @@ h1, h2, h3, h4, h5, h6 {
     align-items: center;
 }
 
+.company-info {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+    border-left: 4px solid #558ecf;
+}
+
 .company-info h3 {
     font-size: 2rem;
-    color: #1e3a8a;
+    color: #558ecf;
     margin-bottom: 1rem;
+    font-weight: 700;
 }
 
 .company-info p {
     font-size: 1.2rem;
     color: #64748b;
+    line-height: 1.6;
 }
 
-.company-info h3 {
-    font-size: 2rem;
-    color: #4A9B8E;
-    margin-bottom: 1rem;
+.contact-person {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
 }
 
 .contact-person h4 {
-    font-size: 1.3rem;
-    color: #4A9B8E;
+    font-size: 1.4rem;
+    color: #558ecf;
     margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+.contact-person h5 {
+    font-size: 1.3rem;
+    color: #143458;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
 }
 
 .contact-methods {
@@ -612,49 +1068,54 @@ h1, h2, h3, h4, h5, h6 {
     gap: 1rem;
 }
 
-.contact-person h5 {
-  margin-bottom: 1rem; /* 🔹 Добавляем отступ снизу */
-}
-
 .contact-method {
     display: flex;
     align-items: center;
     gap: 1rem;
-    padding: 1rem;
-    background: white;
+    padding: 1.2rem;
+    background: rgba(85, 142, 207, 0.05);
     border-radius: 10px;
+    border-left: 3px solid #558ecf;
     box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05);
     transition: all 0.3s ease;
 }
 
 .contact-method:hover {
-    transform: translateX(5px);
-    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+    transform: translateX(8px);
+    box-shadow: 0 5px 25px rgba(85, 142, 207, 0.15);
+    background: rgba(85, 142, 207, 0.08);
 }
 
 .contact-method i {
-    font-size: 1.2rem;
-    color: #4A9B8E;
-    min-width: 20px;
-}
-
-.contact-method a:hover {
-    color: #1E4E6A;
+    font-size: 1.5rem;
+    color: #558ecf;
+    min-width: 24px;
 }
 
 .contact-method a {
     text-decoration: none;
-    color: #374151;
+    color: #143458;
     font-weight: 500;
+    font-size: 1.05rem;
     transition: color 0.3s ease;
 }
 
+.contact-method a:hover {
+    color: #558ecf;
+}
 
-/* Footer */
+/* ============================================
+   15. FOOTER (подвал)
+============================================ */
 .footer {
-    background: #1E4E6A;
-    color: white;
-    padding: 3rem 0 1rem;
+    background: radial-gradient(ellipse at center, 
+            rgba(20, 52, 88, 0.95) 40%, 
+            rgba(12, 18, 31, 0.98) 100%),
+        url('backGround.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 2.5rem 0 1rem;
+    color: #cbd5e1;
 }
 
 .footer-content {
@@ -662,15 +1123,20 @@ h1, h2, h3, h4, h5, h6 {
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
     margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .footer-logo h3 {
     font-size: 1.8rem;
     margin-bottom: 0.5rem;
+    color: #558ecf;
+    font-weight: 700;
 }
 
 .footer-logo p {
-    color: #cbd5e1;
+    color: #a1aab5;
+    font-size: 1rem;
 }
 
 .footer-links {
@@ -678,357 +1144,584 @@ h1, h2, h3, h4, h5, h6 {
     gap: 2rem;
     justify-content: flex-end;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .footer-links a {
     text-decoration: none;
-    color: #cbd5e1;
+    color: #a1aab5;
     transition: color 0.3s ease;
+    font-weight: 500;
 }
 
 .footer-links a:hover {
-    color: white;
+    color: #558ecf;
 }
 
 .footer-bottom {
     text-align: center;
-    padding-top: 2rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    color: #cbd5e1;
+    padding-top: 1.5rem;
+    color: #a1aab5;
+    font-size: 0.9rem;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
+.footer-bottom p {
+    margin: 0;
+}
+
+/* ============================================
+16. ANIMATIONS
+============================================ */
+@keyframes float {
+0%, 100% { transform: translateY(0px); }
+50% { transform: translateY(-20px); }
+}
+
+@keyframes fadeInUp {
+from {
+opacity: 0;
+transform: translateY(30px);
+}
+to {
+opacity: 1;
+transform: translateY(0);
+}
+}
+
+.fade-in-up {
+animation: fadeInUp 0.6s ease-out;
+}
+
+/* ============================================
+17. CUSTOM SCROLLBAR
+============================================ */
+::-webkit-scrollbar {
+width: 8px;
+}
+
+::-webkit-scrollbar-track {
+background: #13293D;
+}
+
+::-webkit-scrollbar-thumb {
+background: #558ecf;
+border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+background: #13293D;
+}
+
+/* ============================================
+   18. RESPONSIVE DESIGN
+============================================ */
+/* ============================================
+   18. RESPONSIVE DESIGN
+============================================ */
+
+/* Промежуточные масштабы (1024px - 1200px) */
+@media (max-width: 1200px) {
+    .nav-menu {
+        gap: 1.5rem; /* 👈 Уменьшили с 2rem */
+    }
+
+    .nav-link {
+        font-size: 0.95rem; /* 👈 Чуть меньше шрифт */
+    }
+
+    .hero-container {
+        gap: 2rem; /* 👈 Уменьшили с 4rem */
+    }
+
+    .hero-title {
+        font-size: 3.5rem; /* 👈 Уменьшили с 4rem */
+    }
+
+    .hero-subtitle {
+        font-size: 1.6rem; /* 👈 Уменьшили с 1.8rem */
+    }
+
+    .hero-description {
+        font-size: 1.1rem; /* 👈 Уменьшили с 1.2rem */
+    }
+}
+
+/* Средние экраны и масштаб 125%-150% (900px - 1024px) */
+@media (max-width: 1024px) {
+    /* Навигация */
+    .navbar {
+        height: auto;
+        min-height: 70px;
+        padding: 0.75rem 0;
+    }
+
+    .nav-container {
+        padding: 0 15px;
+    }
+
+    .nav-logo h2 {
+        font-size: 1.5rem; /* 👈 Уменьшили */
+    }
+
+    .logo-icon {
+        height: 2.5em; /* 👈 Уменьшили */
+    }
+
+    .nav-menu {
+        gap: 1rem; /* 👈 Еще меньше */
+    }
+
+    .nav-link {
+        font-size: 0.9rem;
+        padding: 0.5rem 0.75rem;
+    }
+
+    /* Hero */
+    .hero {
+        min-height: 100vh;
+        padding: 1rem 0;
+    }
+
+    .hero-container {
+        gap: 1.5rem;
+        padding: 1rem 15px;
+    }
+
+    .hero-title {
+        font-size: 3rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.4rem;
+        margin-bottom: 1rem;
+    }
+
+    .hero-description {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .hero-buttons {
+        gap: 1rem;
+        margin-bottom: 1.5rem; /* 👈 Отступ снизу */
+    }
+
+    .btn {
+        padding: 10px 25px;
+        font-size: 0.95rem;
+    }
+
+    /* iPad */
+    .ipad-icon {
+        width: 250px;
+        height: auto;
+    }
+}
+
+/* Планшеты и масштаб 150%+ (768px - 900px) */
+@media (max-width: 900px) {
+    .navbar {
+        height: auto;
+        min-height: 65px;
+    }
+
+    .nav-logo h2 {
+        font-size: 1.4rem;
+    }
+
+    .logo-icon {
+        height: 2.2em;
+    }
+
+    /* Скрываем меню, показываем гамбургер */
     .hamburger {
         display: flex;
     }
-    
+
     .nav-menu {
         display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.98);
+        flex-direction: column;
+        padding: 1rem;
+        gap: 0.5rem;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        border-top: 1px solid rgba(85, 142, 207, 0.2);
+        z-index: 999;
     }
-    
+
+    .nav-menu.active {
+        display: flex;
+    }
+
+    .nav-link {
+        padding: 0.75rem 1rem;
+        border-radius: 8px;
+        font-size: 1rem;
+    }
+
+    .nav-link:hover {
+        background: rgba(85, 142, 207, 0.1);
+    }
+
+    /* Hero */
     .hero-container {
         grid-template-columns: 1fr;
         text-align: center;
         gap: 2rem;
     }
-    
-    .hero-title {
-        font-size: 2.5rem;
+
+    .hero-content {
+        order: 1;
     }
-    
+
+    .hero-visual {
+        order: 2;
+    }
+
+    .hero-title {
+        font-size: 2.8rem;
+    }
+
     .hero-subtitle {
         font-size: 1.3rem;
     }
-    
+
     .hero-buttons {
         justify-content: center;
+        margin-bottom: 2rem; /* 👈 Увеличили отступ */
     }
-    
-    .airplane-icon {
-        font-size: 8rem;
+
+    .ipad-icon {
+        width: 280px;
+        margin: 0 auto;
     }
-    
+}
+
+/* Tablet & Mobile (768px и меньше) */
+@media (max-width: 768px) {
+    body {
+        padding-top: 70px;
+    }
+
+    .navbar {
+        min-height: 70px;
+    }
+
+    .hamburger {
+        display: flex;
+        z-index: 1001;
+    }
+
+    .nav-container {
+        flex-wrap: wrap;
+        position: relative;
+    }
+
+    .nav-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.98);
+        flex-direction: column;
+        padding: 1rem;
+        gap: 0.5rem;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        border-top: 1px solid rgba(85, 142, 207, 0.2);
+    }
+
+    .nav-menu.active {
+        display: flex;
+    }
+
+    .nav-link {
+        padding: 0.75rem 1rem;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+
+    .nav-link:hover {
+        background: rgba(85, 142, 207, 0.1);
+    }
+
+    /* Hero */
+    .hero {
+        min-height: 100vh;
+        padding: 2rem 0 3rem 0; /* 👈 Добавили нижний отступ */
+    }
+
+    .hero-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 2rem;
+        padding: 1rem 20px 2rem 20px; /* 👈 Нижний отступ */
+    }
+
+    .hero-content {
+        order: 1;
+    }
+
+    .hero-visual {
+        order: 2;
+        margin-top: 1rem;
+        margin-bottom: 2rem; /* 👈 Отступ снизу */
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.3rem;
+    }
+
+    .hero-description {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 2rem; /* 👈 Отступ от края */
+    }
+
+    .btn {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .ipad-icon {
+        width: 100%;
+        max-width: 280px;
+        height: auto;
+        margin: 0 auto;
+    }
+
+    .ipad-image {
+        width: 100%;
+        height: auto;
+    }
+
+    /* Остальные секции */
+    .device-img {
+        max-width: 90%;
+    }
+
     .section-title {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
-    
+
     .problems-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .solution-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 1fr;
     }
-    
+
+    .aircraft-row {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.5rem;
+        padding: 1rem 1.5rem;
+    }
+
+    .aircraft-cell.left,
+    .aircraft-cell.right {
+        text-align: center;
+    }
+
+    .aircraft-cell.left::before {
+        display: inline;
+        margin-right: 0.5rem;
+    }
+
     .benefits-container {
         grid-template-columns: 1fr;
         gap: 2rem;
     }
-    
+
     .comparison-container {
-        grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: column;
         gap: 2rem;
     }
-    
+
+    .comparison-item {
+        min-height: auto;
+        width: 100%;
+    }
+
     .vs-divider {
-        order: 2;
+        order: 0;
+        margin: 1rem auto;
     }
-    
+
+    .without-jetool {
+        order: -1;
+    }
+
     .with-jetool {
-        order: 3;
+        order: 1;
     }
-    
+
     .steps-container {
         grid-template-columns: 1fr;
-        gap: 1rem;
+        gap: 2rem;
+        justify-items: center;
     }
-    
+
+    .step {
+        text-align: center;
+        padding: 2rem 1rem;
+        width: 100%;
+    }
+
     .step-arrow {
         transform: rotate(90deg);
+        font-size: 1.5rem;
+        margin: 1rem 0;
+        line-height: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
-    
+
     .cta-features {
         grid-template-columns: 1fr;
         gap: 2rem;
     }
-    
+
+    .cta-content h2 {
+        font-size: 2rem;
+    }
+
     .contact-container {
         grid-template-columns: 1fr;
         gap: 2rem;
     }
-    
+
     .footer-content {
         grid-template-columns: 1fr;
         text-align: center;
     }
-    
+
     .footer-links {
         justify-content: center;
         flex-wrap: wrap;
     }
 }
 
+/* Mobile Small (480px и меньше) */
 @media (max-width: 480px) {
-    .hero-title {
-        font-size: 2rem;
+    body {
+        padding-top: 60px;
     }
-    
+
+    .navbar {
+        min-height: 60px;
+        padding: 0.5rem 0;
+    }
+
+    .nav-logo h2 {
+        font-size: 1.4rem;
+    }
+
+    .logo-icon {
+        height: 2.2em;
+    }
+
+    .hero {
+        min-height: 90vh;
+        padding: 1.5rem 0 2rem 0;
+    }
+
+    .hero-container {
+        padding: 1rem 15px 1.5rem 15px;
+    }
+
+    .hero-title {
+        font-size: 1.8rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .hero-description {
+        font-size: 0.95rem;
+    }
+
+    .hero-buttons {
+        margin-bottom: 1.5rem;
+    }
+
+    .ipad-icon {
+        max-width: 220px;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+
     .solution-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .time-display {
         font-size: 2rem;
     }
-    
+
     .cta-content h2 {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
-    
+
     .cta-feature h3 {
         font-size: 2.5rem;
     }
-}
 
-/* Animations */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
+    .problem-icon {
+        width: 70px;
+        height: 70px;
+        font-size: 1.8rem;
     }
-    to {
-        opacity: 1;
-        transform: translateY(0);
+
+    .solution-number {
+        font-size: 2.5rem;
+    }
+
+    .step-icon {
+        width: 80px;
+        height: 80px;
+        font-size: 2rem;
     }
 }
 
-.fade-in-up {
-    animation: fadeInUp 0.6s ease-out;
-}
+/* Очень маленькие экраны (360px) */
+@media (max-width: 360px) {
+    .hero-title {
+        font-size: 1.5rem;
+    }
 
-/* Smooth scrolling for all browsers */
-html {
-    scroll-behavior: smooth;
-}
+    .hero-subtitle {
+        font-size: 1rem;
+    }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-    width: 8px;
-}
+    .btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
 
-::-webkit-scrollbar-track {
-    background: #13293D;
-}
-
-::-webkit-scrollbar-thumb {
-    background: #4A9B8E;
-    border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: #13293D;
-}
-
-
-.time-comparison .section-title {
-    color: white;
-}
-
-.nav-logo {
-  display: flex;
-  align-items: center;
-  gap: 12px; /* расстояние между логотипом и текстом */
-}
-
-.nav-logo h2 {
-  margin: 0;
-  font-size: 1.5em; /* или твой размер шрифта */
-}
-
-/* Стиль картинки‑иконки */
-.logo-icon {
-  height: 3.0em;      /* по высоте текста */
-  width: auto;        /* сохраняет пропорции */
-  vertical-align: middle;
-  border-radius: 10px; /* необязательно: скруглённые углы */
-}
-
-/* --- Стабилизация прорисовки и убираем "рывки" --- */
-body * {
-  transition: none !important;
-  animation: none !important;
-}
-
-img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-/* Не даём navbar менять размер при прокрутке */
-.navbar {
-  height: 80px;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* Компенсируем высоту фиксированного навбара на мобильных */
-body {
-  padding-top: 70px;
-}
-
-@media (max-width: 768px) {
-
-body {
-    padding-top: 90px; /* чуть больше для iPhone */
-  }
-
-  /* шаги и стрелки идут столбиком и не прижимаются */
-  .steps-container {
-    grid-template-columns: 1fr;
-    gap: 2rem;              /* увеличил промежуток между шагами */
-    justify-items: center;
-  }
-
-  .step {
-    text-align: center;
-    padding: 2rem 1rem;
-  }
-
-  /* стрелка под каждым шагом */
-  .step-arrow {
-    transform: rotate(90deg);
-    font-size: 1.5rem;      /* уменьшил размер стрелки */
-    margin: 1rem 0;         /* 🔹 добавили вертикальный отступ */
-    line-height: 1;         /* чтобы иконка не растягивала блок */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-}
-
-/* Device preview section (two iPad images) */
-.device-preview {
-  background: #fff;          /* подбирай под общий фон сайта, можно #0E1116 #fff */
-  padding: 3rem 0;
-  text-align: center;
-}
-
-.device-images {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 2rem;                    /* расстояние между двумя изображениями */
-  flex-wrap: wrap;              /* на мобильных перейдут друг под друга */
-}
-
-.device-img {
-  max-width: 368px;             /* размер собственно картинки iPad */
-  width: 100%;
-  border-radius: 23px;          /* лёгкое скругление, если нужно */
-  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.device-img:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 15px 40px rgba(0,0,0,0.5);
-}
-
-@media (max-width: 768px) {
-  .device-img {
-    max-width: 90%;
-  }
-}
-
-/* Supported Aircraft Section – в стиле Time Comparison */
-.aircraft {
-  padding: 6rem 0;
-  background: linear-gradient(135deg, #13293D, #1E4E6A);
-  color: white;
-  text-align: center;
-}
-
-.aircraft .section-title {
-  color: #ffffff;      /* #E0E7FF; */
-  margin-bottom: 3rem;
-}
-
-.aircraft-table {
-  max-width: 850px;
-  margin: 0 auto;
-  border-radius: 15px;
-  overflow: hidden;
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255,255,255,0.2);
-  box-shadow: 0 8px 40px rgba(0,0,0,0.2);
-}
-
-/* строки таблицы */
-.aircraft-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.2rem 2rem;
-  border-bottom: 1px solid rgba(255,255,255,0.15);
-  font-size: 1.1rem;
-  color: #E5E8F2;
-}
-
-.aircraft-row:last-child {
-  border-bottom: none;
-}
-
-/* шапка таблицы */
-.aircraft-row.header {
-  background: rgba(255, 255, 255, 0.1);
-  font-weight: 700;
-  color: #ffffff;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.aircraft-cell.left {
-  flex: 1;
-  text-align: left;
-}
-
-.aircraft-cell.right {
-  flex: 1;
-  text-align: right;
-  color: #F0F4FF;
-}
-
-/* Адаптив под телефоны */
-@media (max-width: 600px) {
-  .aircraft-row {
-    flex-direction: column;
-    text-align: center;
-    gap: 0.5rem;
-  }
-  .aircraft-cell.left,
-  .aircraft-cell.right {
-    text-align: center;
-  }
+    .ipad-icon {
+        max-width: 180px;
+    }
 }
