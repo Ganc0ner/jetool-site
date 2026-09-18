@@ -1424,6 +1424,8 @@ background: #13293D;
     .hero-visual {
         order: 2;
         margin-bottom: 1rem; /* 👈 Отступ снизу */
+         display: flex;
+        justify-content: center; /* 👈 Центрирование iPad */
     }
 
     .hero-title {
